@@ -1,0 +1,18 @@
+// 提供各种混合样式
+
+// 自居中，默认为绝对定位居中，可传参数
+.self-center(@pos: absolute) {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+}
+
+// 填充满，默认为绝对定位，可传参数
+.self-fill(@pos: absolute) {
+    position: @pos;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+}

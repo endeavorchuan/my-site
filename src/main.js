@@ -1,0 +1,52 @@
+// 入口文件
+
+import "./mock";
+import Vue from "vue";
+import App from "./App.vue";
+import "./styles/global.less";
+import router from "../src/router"
+
+// 直接注入到vue实例中，每次使用不需要再导入
+import showMessage from "@/utils/showMessage";
+Vue.prototype.$showMessage = showMessage;
+
+import "./api/banner"
+
+// 注册全局指令
+import vLoading from "./directives/loading";
+Vue.directive("loading", vLoading);
+
+new Vue({
+  router,
+  render: h => h(App),
+}).$mount('#app');
+
+
+
+
+// 测试代码
+// import * as blogApi from "./api/blog"
+// blogApi.getBlogTypes().then((r) => {
+//   console.log("博客分类", r);
+// });
+// blogApi.getBlogs(2, 10, 3).then((r) => {
+//   console.log("博客", r);
+// });
+
+// 测试接口
+import * as blogApi from "./api/blog";
+// blogApi.getBlog("dsaas").then((r) => {
+//   console.log(r);
+// });
+
+// blogApi.postComment({
+//   nickname: "昵称",
+//   content: "评论内容，纯文本",
+//   blogid: "123"
+// }).then((r) => {
+//   console.log(r);
+// });
+
+// blogApi.getComments("123123").then((r) => {
+//   console.log(r);
+// });
