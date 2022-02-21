@@ -1,7 +1,8 @@
 <template>
   <Layout>
     <div class="main-container" v-loading="isLoading" v-if="data">
-      <BlogDetail :blog="data" />
+      <BlogDetail :blog="data" v-if="data" />
+      <BlogComment v-if="!isLoading" />
     </div>
 
     <template #right>
@@ -18,12 +19,14 @@
   import Layout from "@/components/Layout";
   import BlogDetail from "@/views/Blog/components/BlogDetail";
   import BlogTOC from "@/views/Blog/components/BlogTOC";
+  import BlogComment from "./components/BlogComment";
 
   export default {
     components: {
       Layout,
       BlogDetail,
-      BlogTOC
+      BlogTOC,
+      BlogComment,
     },
 
     mixins: [fetchData((null))],
