@@ -33,6 +33,10 @@
       this.$bus.$on("mainScroll", this.handleScroll);
     },
 
+    destroyed() {
+      this.$bus.$off("mainScroll", this.handleScroll);
+    },
+
     computed: {
       hasMore() {
         return this.data.rows.length < this.data.total;
@@ -41,7 +45,7 @@
 
     methods: {
       handleScroll(dom) {
-        if(this.isLoading) {
+        if(this.isLoading || !dom) {
           // 目前正在加载更多
           return;
         }

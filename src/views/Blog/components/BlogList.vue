@@ -1,5 +1,5 @@
 <template>
-  <div class="blog-list-container" ref="container" v-loading="isLoading">
+  <div class="blog-list-container" ref="mainContainer" v-loading="isLoading">
     <ul>
       <!-- 一个li就是一个博客 -->
       <li v-for="item in data.rows" :key="item.id">
@@ -71,6 +71,11 @@
       Pager
     },
 
+    mounted() {
+      this.$bus.$on("setMainScroll", this.handleSetMainScroll);
+      this.$refs.mainContainer.addEventListener("scroll", this.handleScroll);
+    },
+
     computed: {
       // 获取路由信息
       routeInfo() {
@@ -84,6 +89,12 @@
           limit
         };
       }
+    },
+
+    beforeDestroy() {
+      this.$bus.$emit("mainScroll");
+      this.$refs.mainContainer.removeEventListener("scroll", this.handleScroll);
+      this.$bus.$off("setMainScroll", this.handleSetMainScroll);
     },
 
     methods: {
@@ -117,6 +128,14 @@
             }
           });
         }
+      },
+
+      handleScroll() {
+        this.$bus.$emit("mainScroll", this.$refs.mainContainer);
+      },
+
+      handleSetMainScroll(scrollTop) {
+        this.$refs.mainContainer.scrollTop = scrollTop;
       }
     },
 
@@ -125,7 +144,7 @@
       async $route() {
         this.isLoading = true;
         // 滚动高度设为0
-        this.$refs.container.scrollTop = 0;
+        this.$refs.mainContainer.scrollTop = 0;
         this.data = await this.fetchData();
         this.isLoading = false;
       }
