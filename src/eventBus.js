@@ -54,4 +54,9 @@ import Vue from "vue";
  *    - 滚动高度
  */
 
-Vue.prototype.$bus = new Vue({});
+const app = new Vue({});
+
+Vue.prototype.$bus = app;
+
+// 导出事件总线，让其他js模块也能够使用
+export default app;

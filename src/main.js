@@ -15,7 +15,9 @@ import "./api/banner"
 
 // 注册全局指令
 import vLoading from "./directives/loading";
+import vLazy from "./directives/lazy";
 Vue.directive("loading", vLoading);
+Vue.directive("lazy", vLazy);
 
 new Vue({
   router,
