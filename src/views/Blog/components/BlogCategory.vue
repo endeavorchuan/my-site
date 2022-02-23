@@ -37,7 +37,7 @@
         ];
 
         // 激活样式，判断当前id是否等于当前的分类id
-        return result.map(it=>({
+      return result.map((it) => ({
           ...it,
           isSelect: it.id === this.categoryId,
           aside: `${it.articleCount}篇`

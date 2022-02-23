@@ -1,8 +1,18 @@
 <template>
   <ul class="right-list-container">
     <li v-for="(item, i) in list" :key="i">
-      <span :class="{active: item.isSelect}" @click="handleClick(item)">{{item.name}}</span>
-      <span v-if="item.aside" class="aside" :class="{active: item.isSelect}" @click="handleClick(item)">{{item.aside}}</span>
+      <span
+        :class="{active: item.isSelect}"
+        @click="handleClick(item)">
+        {{item.name}}
+      </span>
+      <span
+        v-if="item.aside"
+        class="aside"
+        :class="{active: item.isSelect}"
+        @click="handleClick(item)">
+        {{item.aside}}
+      </span>
       <!-- 递归，显示当前组件 -->
       <RightList :list="item.children" @select="handleClick" />
     </li>

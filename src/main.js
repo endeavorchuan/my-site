@@ -5,6 +5,7 @@ import Vue from "vue";
 import App from "./App.vue";
 import "./styles/global.less";
 import router from "../src/router"
+import "@/eventBus"
 
 // 直接注入到vue实例中，每次使用不需要再导入
 import showMessage from "@/utils/showMessage";
