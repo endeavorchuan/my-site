@@ -20,6 +20,7 @@
   import BlogDetail from "@/views/Blog/components/BlogDetail";
   import BlogTOC from "@/views/Blog/components/BlogTOC";
   import BlogComment from "./components/BlogComment";
+  import mainScroll from "@/mixins/mainScroll";
 
   export default {
     components: {
@@ -29,31 +30,12 @@
       BlogComment,
     },
 
-    mixins: [fetchData((null))],
+    mixins: [fetchData((null)), mainScroll("mainContainer")],
 
     methods: {
       async fetchData() {
         return await getBlog(this.$route.params.id);
       },
-
-      handleScroll() {
-        this.$bus.$emit("mainScroll", this.$refs.mainContainer);
-      },
-
-      handleSetMainScroll(scrollTop) {
-         this.$refs.mainContainer.scrollTop = scrollTop;
-      }
-    },
-
-    mounted() {
-      this.$bus.$on("setMainScroll", this.handleSetMainScroll);
-      this.$refs.mainContainer.addEventListener("scroll", this.handleScroll);
-    },
-
-    beforeDestroy() {
-      this.$bus.$emit("mainScroll");
-      this.$refs.mainContainer.removeEventListener("scroll", this.handleScroll);
-      this.$bus.$off("setMainScroll", this.handleSetMainScroll);
     },
 
     updated() {
