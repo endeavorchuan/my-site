@@ -11,6 +11,7 @@ import "./banner";
 import "./blog";
 import "./about"
 import "./setting";
+import "./project"
 import Mock from "mockjs";
 
 // 模拟网络延迟1000~2000ms
