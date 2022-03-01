@@ -1,49 +1,54 @@
 <template>
     <ul class="contact-container">
         <li>
-            <a href="https://github.com/endeavorchuan">
+            <a target="_blank" :href="data.github">
                 <div class="icon github">
                     <Icon type="github" />
                 </div>
-                <span>endeavorchuan</span>
+                <span>{{data.githubName}}</span>
             </a>
         </li>
         <li>
-            <a href="mailto:chc82347794@163.com">
+            <a :href="`mailto:${data.mail}`">
                 <div class="icon mail">
                   <Icon type="mail" />
                 </div>
-                <span>chc82347794@163.com</span>
+                <span>{{data.mail}}</span>
             </a>
         </li>
         <li>
-            <a href="tencent://message/?Menu=yes&uin=773589599&Service=300&sigT=45a1e5847943b64c6ff3990f8a9e644d2b31356cb0b4ac6b24663a3c8dd0f8aa12a595b1714f9d45">
-                <div class="icon qq">
+            <a :href="`tencent://message/?Menu=yes&uin=${data.qq}&Service=300&sigT=45a1e5847943b64c6ff3990f8a9e644d2b31356cb0b4ac6b24663a3c8dd0f8aa12a595b1714f9d45`">
+                <div class="icon">
                     <Icon type="qq" />
                 </div>
-                <span>773589599</span>
+                <span>{{data.qq}}</span>
             </a>
+            <div class="pop">
+                <img :src="data.qqQrCode" alt="" />
+            </div>
         </li>
         <li>
           <a>
             <div class="icon weixin">
               <Icon type="weixin" />
             </div>
-            <span>chc18845632858</span>
+            <span>{{data.weixin}}</span>
           </a>
           <div class="pop">
-            <img src="https://pic.imgdb.cn/item/61fe7c5b2ab3f51d91bb6c1b.jpg">
+            <img :src="data.weixinQrCode" alt="" />
           </div>
         </li>
     </ul>
 </template>
 
 <script>
-    import Icon from "@/components/Icon"
+    import Icon from "@/components/Icon";
+    import {mapState} from "vuex";
     export default {
         components: {
             Icon
         },
+        computed: mapState("setting", ["data"])
     }
 </script>
 

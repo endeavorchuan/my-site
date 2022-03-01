@@ -5,7 +5,11 @@ import Vue from "vue";
 import App from "./App.vue";
 import "./styles/global.less";
 import router from "../src/router"
+import store from "../src/store"
 import "@/eventBus"
+
+// 全局网站数据，一开始就要加载出来
+store.dispatch("setting/fetchSetting");
 
 // 直接注入到vue实例中，每次使用不需要再导入
 import showMessage from "@/utils/showMessage";
@@ -21,6 +25,7 @@ Vue.directive("lazy", vLazy);
 
 new Vue({
   router,
+  store,
   render: h => h(App),
 }).$mount('#app');
 
@@ -70,3 +75,9 @@ import * as blogApi from "./api/blog";
 // window.eventBus = eventBus;
 // window.handler1 = handler1;
 // window.handler2 = handler2;
+
+// vuex测试
+// import {getSetting} from "@/api/setting";
+// getSetting().then((resp) => {
+//   console.log(resp);
+// });
