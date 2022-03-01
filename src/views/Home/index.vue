@@ -1,5 +1,5 @@
 <template>
-    <div v-loading="isLoading" class="home-container" ref="container" @wheel="handleWheel">
+    <div v-loading="loading" class="home-container" ref="container" @wheel="handleWheel">
         <ul class="carousel-container" :style="{marginTop}" @transitionend="handleTransitionEnd">
             <li v-for="item in data" :key="item.id">
                 <CarouseItem :carousel="item" />
@@ -25,14 +25,11 @@
 </template>
 
 <script>
-    import {getBanners} from "@/api/banner";
+    import { mapState } from "vuex";
     import CarouseItem from "@/views/Home/Carouseitem";
     import Icon from "@/components/Icon";
-    import fetchData from "@/mixins/fetchData";
 
     export default {
-        mixins: [fetchData([])],
-
         components: {
             CarouseItem,
             Icon,
@@ -46,7 +43,11 @@
             };
         },
 
-        mounted() {
+      created() {
+        this.$store.dispatch("banner/fetchBanner");
+      },
+
+      mounted() {
             this.containerHeight = this.$refs.container.clientHeight;
             window.addEventListener("resize", this.handleResize);
         },
@@ -58,7 +59,8 @@
         computed: {
             marginTop() {
                 return -this.index * this.containerHeight + "px";
-            }
+            },
+            ...mapState("banner", ["loading", "data"])
         },
 
         methods: {
@@ -66,12 +68,6 @@
             switchTo(i) {
                 this.index = i;
             },
-
-            // 获取远程数据
-            async fetchData() {
-              return await getBanners();
-            },
-
             handleWheel(e) {
                 if(this.switching) {
                     return;
