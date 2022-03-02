@@ -6,18 +6,11 @@
  * @update: 2022-02-06 16:15
  */
 
-import Home from "@/views/Home"
-import About from "@/views/About"
-import Blog from "@/views/Blog"
-import Project from "@/views/Project"
-import Message from "@/views/Message"
-import BlogDetail from "@/views/Blog/Detail"
-
 export default [
     {
         name: "Home",
         path: "/",
-        component: Home,
+        component: import(/* webpackChunkName: "home" */"@/views/Home"),
         meta: {
             title: "首页"
         }
@@ -25,7 +18,7 @@ export default [
     {
         name: "About",
         path: "/about",
-        component: About,
+        component: import(/* webpackChunkName: "about" */"@/views/About"),
         meta: {
             title: "关于我"
         }
@@ -33,7 +26,7 @@ export default [
     {
         name: "Blog",
         path: "/article",
-        component: Blog,
+        component: import(/* webpackChunkName: "blog" */"@/views/Blog"),
         meta: {
             title: "文章"
         }
@@ -41,7 +34,7 @@ export default [
     {
         name: "CategoryBlog",
         path: "/article/cate/:categoryId",
-        component: Blog,
+        component: import(/* webpackChunkName: "blog" */"@/views/Blog"),
         meta: {
             title: "文章"
         }
@@ -49,7 +42,7 @@ export default [
     {
         name: "BlogDetail",
         path: "/article/:id",
-        component: BlogDetail,
+        component: import(/* webpackChunkName: "blogDetail" */"@/views/Blog/Detail"),
         meta: {
             title: "文章详情"
         }
@@ -57,7 +50,7 @@ export default [
     {
         name: "Project",
         path: "/Project",
-        component: Project,
+        component: import(/* webpackChunkName: "project" */"@/views/Project"),
         meta: {
             title: "项目&效果"
         }
@@ -65,7 +58,7 @@ export default [
     {
         name: "Message",
         path: "/Message",
-        component: Message,
+        component: import(/* webpackChunkName: "message" */"@/views/Message"),
         meta: {
             title: "留言板"
         }
