@@ -11,8 +11,11 @@ import VueRouter from "vue-router";
 import routes from "./routes";
 import {titleController} from "@/utils"
 
-// 使用一个vue插件
-Vue.use(VueRouter);
+// 若使用常规方式导入，会造成全局变量污染，判断是否有全局变量，就可以知道导入方式
+if(!window.VueRouter) {
+    // 使用一个vue插件
+    Vue.use(VueRouter);
+}
 
 
 const router = new VueRouter({
