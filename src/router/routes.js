@@ -6,6 +6,8 @@
  * @update: 2022-02-06 16:15
  */
 
+import NotFound from "@/views/NotFound";
+
 export default [
     {
         name: "Home",
@@ -63,4 +65,9 @@ export default [
             title: "留言板"
         }
     },
+    {
+        name: "NotFound",
+        path: "*",
+        component: NotFound
+    }
 ];
