@@ -16,22 +16,22 @@ Mock.mock("/api/banner", "get", {
             id: "1",
             midImg: "https://pic.imgdb.cn/item/621f42955baa1a80abe6c118.jpg",
             bigImg: "https://pic.imgdb.cn/item/621f42815baa1a80abe6aeef.jpg",
-            title: "凛冬将至",
-            description: "人唯有恐惧的时候方能勇敢",
+            title: "永远相信",
+            description: "美好的事情即将发生",
         },
         {
             id: "2",
             midImg: "https://pic.imgdb.cn/item/621f42f05baa1a80abe70c6f.jpg",
             bigImg: "https://pic.imgdb.cn/item/621f42e35baa1a80abe7020b.jpg",
-            title: "血火同源",
-            description: "如果我回头，一切都完了",
+            title: "春花无数",
+            description: "毕竟何如秋实",
         },
         {
             id: "3",
             midImg: "https://pic.imgdb.cn/item/621f43605baa1a80abe75fad.jpg",
             bigImg: "https://pic.imgdb.cn/item/621f43555baa1a80abe759ca.jpg",
-            title: "听我怒吼",
-            description: "兰尼斯特有债必偿",
+            title: "凡是过往",
+            description: "皆为序章",
         },
     ]
 })
